@@ -58,7 +58,8 @@ def postRequest(url, dictMaj, headers=postHeader):
         print('** Probleme avec la requete, cette requete est inexacte:\n {}'.format(url))
         raise Exception('Probleme avec la requete, cette requete est incorrecte:\n {0} \n Erreur : {1} '.format(url, messErreurReponse))
 
-
+# *****
+# *** NE PAS UTILISER EN PROD
 def MAJ_deletePackage(idPackToDelete, purge=False):
     """ Fonction générique qui supprime un package
     *  purge = remove completement ** attention cannot by undone **
@@ -85,6 +86,10 @@ if __name__ == '__main__':
     ########################
     # pour les tests comme on relancera la creation de la meme ressource 
     # on debute par la supprimer sinon nous aurons une erreur car on ne peut creer la meme ressource 2 fois
+    # ****************
+    # NE JAMAIS SUUPRIMER DE JEU OU RESOURCE EN PROD, si elles existent deja vous devez mettre a jour vos ressources(voir requete update) et non les supprimer pour les recreer, 
+    #  ceci causerai des problème avec la date de creation ainsi que le ID généré automatiquement la suppression ce fait uniquement pour des tests
+    # ******************
     try: 
         MAJ_deletePackage('josee-test-creation') #*** a enlever
         import time
